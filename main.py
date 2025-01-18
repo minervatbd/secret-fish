@@ -1,9 +1,29 @@
 import discord
+import sys
+import asyncio
 
 import utils
 
 class MyClient(discord.Client):
+
     async def on_ready(self):
+        
+        # if already initialized, return
+        global init_complete
+        if init_complete:
+            return
+        init_complete = True
+
+        # log client
+        utils.logMsg('Logged in as {} ({}).'.format(client.user.name, client.user.id))
+
+        # change presence
+        try:
+            await client.change_presence(activity = "placeholder")
+        except:
+            utils.logMsg("Failed to change_presence!")
+
+        # end of set-up
         utils.logMsg("Ready!")
     
     async def on_message(self, message):
