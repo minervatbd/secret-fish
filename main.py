@@ -4,10 +4,13 @@ import asyncio
 
 import utils
 
+utils.logMsg('Starting up...')
+init_complete = False
+
 class MyClient(discord.Client):
 
     async def on_ready(self):
-        
+
         # if already initialized, return
         global init_complete
         if init_complete:
