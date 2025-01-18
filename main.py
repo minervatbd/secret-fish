@@ -22,7 +22,7 @@ class MyClient(discord.Client):
 
         # change presence
         try:
-            await client.change_presence(activity = "placeholder")
+            await client.change_presence(activity=discord.CustomActivity(name = "!cast"))
         except:
             utils.logMsg("Failed to change_presence!")
 
