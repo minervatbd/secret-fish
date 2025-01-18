@@ -1,0 +1,30 @@
+import discord
+
+import utils
+
+class MyClient(discord.Client):
+    async def on_ready(self):
+        utils.logMsg("Ready!")
+    
+    async def on_message(self, message):
+        return
+    
+intents = discord.Intents.default()
+intents.message_content = True
+
+# find our REST API token
+token = utils.getToken()
+
+if token == None or len(token) == 0:
+    utils.logMsg('Please place your API token in a file called "token", in the same directory as this script.')
+    sys.exit(0)
+
+# connect to discord and run indefinitely
+try:
+    intents = discord.Intents.default()
+    intents.message_content = True
+    client = MyClient(intents=intents)
+    client.run(token)
+finally:
+    utils.TERMINATE = True
+    utils.logMsg("Main thread terminated!")
