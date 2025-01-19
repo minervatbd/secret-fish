@@ -54,8 +54,11 @@ class MyClient(discord.Client):
             await asyncio.sleep(900)
     
     async def on_message(self, message):
-        return
-    
+
+        """ do not interact with our own messages """
+        if message.author.id == client.user.id or message.author.bot == True:
+            return
+
 intents = discord.Intents.default()
 intents.message_content = True
 
