@@ -1,5 +1,8 @@
 update_hookstillactive = 60 * 60 * 3
 
+fish_timer_default = 60
+reel_timer_default = 10
+
 cmd_prefix = "!"
 cmd_test = cmd_prefix + "test"
 cmd_cast = cmd_prefix + "cast"

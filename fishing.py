@@ -34,13 +34,13 @@ class FishFisher:
 fishers = {}
 fishing_counter = 0
 
+""" simple test command """
 async def test(cmd):
 	response = 'tested'
 	return await utils.send_message(cmd.message.channel, cmd.message.author, response)
 
 """ Casts a line into the Water """
 async def cast(cmd):
-	time_now = round(time.time())
 	author = cmd.message.author
 	channel = cmd.message.channel
 	has_reeled = False
@@ -50,10 +50,11 @@ async def cast(cmd):
 	
 	fisher = fishers[author.id]
 
+	# Players must be in a fishing channel.
 	if channel.id not in cfg.fishing_channels:
 		response = 'You attempt to cast your line with no water in sight. The hook falls unceremoniously to the ground. You should probably try this at #the-lakefront'
 
-	# Players who are already cast a line cannot cast another one.
+	# Players who already cast a line cannot cast another one.
 	elif fisher.fishing is True:
 		response = "You've already cast a line."
 	
@@ -64,18 +65,23 @@ async def cast(cmd):
 
 		await utils.send_message(channel, author, response)
 
+		# do some stuff with variables for later
 		nobite_text = "No bite yet."
 		bite_text = "Bite!"
 
 		global fishing_counter
 		fishing_counter += 1
 		current_fishing_id = fisher.fishing_id = fishing_counter
+
+		fish_timer = cfg.fish_timer_default
+		reel_timer = cfg.reel_timer_default
 		
 		# User has a 1/10 chance to get a bite
 		fun = 100
 
 		bun = 0
 
+		# loop that runs until the cast is cancelled or a bite is rolled
 		while not utils.TERMINATE:
 			
 			if fun <= 0:
@@ -83,11 +89,11 @@ async def cast(cmd):
 			else:
 				damp = random.randrange(fun)
 			
-			await asyncio.sleep(60)
+			await asyncio.sleep(fish_timer)
 
+			# if fishing was cancelled
 			if current_fishing_id != fisher.fishing_id:
 				return
-
 			if fisher.fishing == False:
 				return
 
@@ -103,11 +109,12 @@ async def cast(cmd):
 			else:
 				break
 		
+		# bite happens when loop breaks
 		fisher.bite = True
 
 		await utils.send_message(channel, author, bite_text)
 
-		await asyncio.sleep(10)
+		await asyncio.sleep(reel_timer)
 
 		if fisher.bite != False:
 			response = "The fish got away..."
