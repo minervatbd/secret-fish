@@ -1,6 +1,6 @@
 import discord
 import sys
-import asyncio #
+import asyncio
 
 import utils
 
