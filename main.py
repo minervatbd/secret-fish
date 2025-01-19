@@ -2,12 +2,18 @@ import discord
 import sys
 import asyncio
 import time
+import shlex
 
 import utils
 import cfg
+import fishcmd
 
 utils.logMsg('Starting up...')
 init_complete = False
+
+cmd_map = {
+    cfg.cmd_test: fishcmd.test
+}
 
 class MyClient(discord.Client):
 
@@ -58,6 +64,48 @@ class MyClient(discord.Client):
         """ do not interact with our own messages """
         if message.author.id == client.user.id or message.author.bot == True:
             return
+                
+        if message.content.startswith(cfg.cmd_prefix):
+
+            """
+                Wake up if we need to respond to messages. Could be:
+                    message starts with !
+                    direct message (server == None)
+                    user is new/has no roles (len(roles) < 2)
+                    user is swearing
+            """
+
+            # tokenize the message. the command should be the first word.
+            try:
+                tokens = shlex.split(message.content)  # it's split with shlex now because shlex regards text within quotes as a single token
+            except:
+                tokens = message.content.split(' ')  # if splitting via shlex doesnt work (odd number of quotes), use the old splitting method so it doesnt give an exception
+
+            tokens_count = len(tokens)
+            command = tokens[0].lower() if tokens_count >= 1 else ""
+
+            # remove mentions to us
+            mentions = list(filter(lambda user: user.id != client.user.id, message.mentions))
+
+            # Create command object
+            cmd_obj = fishcmd.FishCmd(
+                tokens=tokens,
+                message=message,
+                client=client,
+                mentions=mentions
+            )
+
+            # if the message wasn't a command, we can stop here
+            if not message.content.startswith(cfg.cmd_prefix):
+                return
+
+            # Check the main command map for the requested command.
+            global cmd_map
+            cmd_fn = cmd_map.get(command)
+
+            if cmd_fn is not None:
+                # Execute found command
+                return await cmd_fn(cmd_obj)
 
 intents = discord.Intents.default()
 intents.message_content = True
