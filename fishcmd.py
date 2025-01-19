@@ -97,7 +97,7 @@ async def cast(cmd):
 			else:
 				break
 
-		await utils.send_message(channel, author, nobite_text)
+		await utils.send_message(channel, author, bite_text)
 
 		await asyncio.sleep(10)
 
