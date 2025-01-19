@@ -1,8 +1,10 @@
 import discord
 import sys
-import asyncio #
+import asyncio
+import time
 
 import utils
+import cfg
 
 utils.logMsg('Starting up...')
 init_complete = False
@@ -28,6 +30,28 @@ class MyClient(discord.Client):
 
         # end of set-up
         utils.logMsg("Ready!")
+
+        """
+        Set up for infinite loop to perform periodic tasks.
+        """
+
+        time_now = int(time.time())
+
+        # Every three hours we log a message saying the periodic task hook is still active. On startup, we want this to happen within about 60 seconds, and then on the normal 3 hour interval.
+        time_last_logged = time_now - cfg.update_hookstillactive + 60
+
+        utils.logMsg('Beginning periodic hook loop.')
+        while not utils.TERMINATE:
+            time_now = int(time.time())
+
+            # Periodic message to log that this stuff is still running.
+            if (time_now - time_last_logged) >= cfg.update_hookstillactive:
+                time_last_logged = time_now
+
+                utils.logMsg("Periodic hook still active.")
+
+            # Wait a while before running periodic tasks.
+            await asyncio.sleep(900)
     
     async def on_message(self, message):
         return

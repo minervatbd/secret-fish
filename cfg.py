@@ -1,0 +1,1 @@
+update_hookstillactive = 60 * 60 * 3
