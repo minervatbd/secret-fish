@@ -6,14 +6,16 @@ import shlex
 
 import utils
 import cfg
-import fishcmd
+import fishing
+
+from obj.fishcmd import FishCmd
 
 utils.logMsg('Starting up...')
 init_complete = False
 
 cmd_map = {
-    cfg.cmd_test: fishcmd.test,
-    cfg.cmd_cast: fishcmd.cast
+    cfg.cmd_test: fishing.test,
+    cfg.cmd_cast: fishing.cast
 }
 
 class MyClient(discord.Client):
@@ -89,7 +91,7 @@ class MyClient(discord.Client):
             mentions = list(filter(lambda user: user.id != client.user.id, message.mentions))
 
             # Create command object
-            cmd_obj = fishcmd.FishCmd(
+            cmd_obj = FishCmd(
                 tokens=tokens,
                 message=message,
                 client=client,
