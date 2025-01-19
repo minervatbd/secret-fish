@@ -48,6 +48,20 @@ def getValueFromFileContents(fname):
 
 	return token
 
+""" get a list of strings from a file """
+def getStrListFromFileContents(fname):
+    str_list = []
+
+    try:
+        file = open(fname, "r")
+        str_list = file.readlines()
+    except IOError:
+        print("Could not read {} file.".format(fname))
+    finally:
+        file.close()
+
+    return str_list
+
 """ get the Discord API token from the config file on disk """
 def getToken():
 	return getValueFromFileContents("token")
