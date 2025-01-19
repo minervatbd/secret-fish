@@ -12,7 +12,8 @@ utils.logMsg('Starting up...')
 init_complete = False
 
 cmd_map = {
-    cfg.cmd_test: fishcmd.test
+    cfg.cmd_test: fishcmd.test,
+    cfg.cmd_cast: fishcmd.cast
 }
 
 class MyClient(discord.Client):
