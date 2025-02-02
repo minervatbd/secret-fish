@@ -8,7 +8,7 @@ import utils
 import cfg
 import fishing
 
-from obj.fishcmd import FishCmd
+from models import Cmd
 
 utils.logMsg('Starting up...')
 init_complete = False
@@ -91,7 +91,7 @@ class MyClient(discord.Client):
             mentions = list(filter(lambda user: user.id != client.user.id, message.mentions))
 
             # Create command object
-            cmd_obj = FishCmd(
+            cmd_obj = Cmd(
                 tokens=tokens,
                 message=message,
                 client=client,

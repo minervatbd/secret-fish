@@ -5,31 +5,7 @@ import random
 import utils
 import cfg
 
-class FishFisher:
-	fishing = False
-	bite = False
-	current_fish = ""
-	current_size = ""
-	pier = ""
-	bait = False
-	high = False
-	fishing_id = 0
-	inhabitant_id = None
-	fleshling_reeled = False
-	ghost_reeled = False
-
-	def stop(self): 
-		self.fishing = False
-		self.bite = False
-		self.current_fish = ""
-		self.current_size = ""
-		self.pier = ""
-		self.bait = False
-		self.high = False
-		self.fishing_id = 0
-		self.inhabitant_id = None
-		self.fleshling_reeled = False
-		self.ghost_reeled = False
+from models import Fisher
 
 fishers = {}
 fishing_counter = 0
@@ -46,7 +22,7 @@ async def cast(cmd):
 	has_reeled = False
 
 	if author.id not in fishers.keys():
-		fishers[author.id] = FishFisher()
+		fishers[author.id] = Fisher()
 	
 	fisher = fishers[author.id]
 
@@ -127,3 +103,33 @@ async def cast(cmd):
 	# Don't send out a response if the user actually reeled in a fish, since that gets sent by the reel command instead.
 	if has_reeled is False:
 		return await utils.send_message(channel, author, response)
+	
+""" Reels in the fishing line.. """
+async def reel(cmd):
+	author = cmd.message.author
+	channel = cmd.message.channel
+
+	if author.id not in fishers.keys():
+		fishers[author.id] = Fisher()
+	
+	fisher = fishers[author.id]
+
+	# Players must be in a fishing channel.
+	if channel.id not in cfg.fishing_channels:
+		response = "You aren't even near water, how do you expect to reel your line in?"
+
+	# Players must cast before they can reel
+	elif not fisher.fishing:
+		response = "You attempt to reel in your line without even casting it first, causing the hook to get jammed in the rod. Try `!cast`."
+
+	# If a fish isn't biting, then a player reels in nothing.
+	elif not fisher.bite:
+		response = "You reel in, only to find that no fish had bitten the line yet."
+		fisher.stop()
+
+	# On successful reel.
+	else:
+		response = "You reel in a big fat fish!"
+		fisher.stop()
+
+	return await utils.send_message(channel, author, response)
