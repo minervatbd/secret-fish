@@ -9,6 +9,7 @@ reel_timer_default = 10
 cmd_prefix = "!"
 cmd_test = cmd_prefix + "test"
 cmd_cast = cmd_prefix + "cast"
+cmd_reel = cmd_prefix + "reel"
 
 channel_lakefront = 1327418589627682856
 channel_shop = 1329604548314271875

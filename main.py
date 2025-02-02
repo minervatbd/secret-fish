@@ -15,7 +15,8 @@ init_complete = False
 
 cmd_map = {
     cfg.cmd_test: fishing.test,
-    cfg.cmd_cast: fishing.cast
+    cfg.cmd_cast: fishing.cast,
+    cfg.cmd_reel: fishing.reel,
 }
 
 class MyClient(discord.Client):
