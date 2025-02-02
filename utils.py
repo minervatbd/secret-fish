@@ -1,5 +1,9 @@
 import datetime
 import discord
+import json
+import os
+
+from models import Fish
 
 TERMINATE = False
 
@@ -65,3 +69,27 @@ def getStrListFromFileContents(fname):
 """ get the Discord API token from the config file on disk """
 def getToken():
 	return getValueFromFileContents("token")
+
+""" attempts to get extra fish objects from a json file fname in the directory """
+def getExtraFish(fname):
+    outlist = []
+    try:  
+        with open(fname) as f:
+            fish = json.load(f)
+            for i in fish:
+                currentfish = fish[i]
+                outlist.append(
+                    Fish(
+                        id_fish = currentfish['id_fish'],
+                        str_name = currentfish['str_name'],
+                        size = currentfish['size'],
+                        rarity = currentfish['rarity'],
+                        catch_time = currentfish['catch_time'],
+                        catch_weather = currentfish['catch_weather'],
+                        str_desc = currentfish['str_desc'],
+                        salinity = currentfish['salinity'],
+                    ))
+    except FileNotFoundError:
+        logMsg("No extra fish JSON found.")
+
+    return outlist

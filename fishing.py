@@ -42,7 +42,6 @@ async def cast(cmd):
 		await utils.send_message(channel, author, response)
 
 		# do some stuff with variables for later
-		nobite_text = "No bite yet."
 		bite_text = "Bite!"
 
 		global fishing_counter

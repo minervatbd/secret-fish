@@ -1,5 +1,6 @@
 token
 extra_no_bite_text
+extra_fish.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
