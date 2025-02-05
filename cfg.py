@@ -57,6 +57,21 @@ bite_text = {
      "colossal": "You feel a tug at your fishing pole so intense it almost sweeps you off your feet!"
 }
 
+# point calculation for now will be rarity * size based on these values
+# i like how these values range right now, smallest is 1,100 and largest is 110,000
+points_vals = {
+     "common": 52,
+     "uncommon": 103,
+     "rare": 234,
+     "promo": 497,
+     "miniscule": 23,
+     "small": 49,
+     "average": 87,
+     "big": 111,
+     "huge": 151,
+     "colossal": 223
+}
+
 channel_lakefront = 1327418589627682856
 channel_shop = 1329604548314271875
 

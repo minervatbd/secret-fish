@@ -14,6 +14,7 @@ class Fisher:
 	fishing = False
 	bite = False
 	current_fish = ""
+	current_rarity = ""
 	current_size = ""
 	pier = ""
 	bait = False
@@ -39,10 +40,10 @@ def gen_fish(fisher):
 	
 	fish_pool = []
 
-	rarity = cfg.rarity_map[random.randint(1, 100)]
+	fisher.rarity = cfg.rarity_map[random.randint(1, 100)]
 
 	for f in cfg.fish_names:
-		if cfg.fish_map[f].rarity == rarity:
+		if cfg.fish_map[f].rarity == fisher.rarity:
 			fish_pool.append(f)
 	
 	# TODO: implement weather/time catching mechanics
@@ -175,7 +176,7 @@ async def reel(cmd):
 
 		user_data = User(member = author)
 
-		user_data.points += 90
+		user_data.points += cfg.points_vals[fisher.current_size] * cfg.points_vals[fisher.current_rarity]
 
 		dex_data = DexEntry(member = author, id_fish = fisher.current_fish)
 
