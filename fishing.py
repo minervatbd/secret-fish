@@ -135,13 +135,12 @@ async def cast(cmd):
 
 		await asyncio.sleep(reel_timer)
 
-		if fisher.bite != False:
+		if fisher.bite != False and current_fishing_id == fisher.fishing_id:
 			response = "The fish got away..."
+			fisher.stop()
 		
 		else:
 			has_reeled = True
-		
-		fisher.stop()
 	
 	# Don't send out a response if the user actually reeled in a fish, since that gets sent by the reel command instead.
 	if has_reeled == False:
