@@ -1,6 +1,5 @@
 import filehelpers
 import fishstatic
-import random
 
 # helper functions for building the chance dictionaries
 def set_all(d, keys, value):
@@ -29,71 +28,71 @@ reel_timer_default = 10
 
 # fishing minute count odds
 bite_odds_default = {
-     1:2,
-     2:5,
-     3:8,
-     4:11,
-     5:12,
-     6:11,
-     7:9,
-     8:8,
-     9:8,
-     10:8,
-     11:6,
-     12:4,
-     13:3,
-     14:2,
-     15:1,
-     16:1,
-     17:1,
+    1:2,
+    2:5,
+    3:8,
+    4:11,
+    5:12,
+    6:11,
+    7:9,
+    8:8,
+    9:8,
+    10:8,
+    11:6,
+    12:4,
+    13:3,
+    14:2,
+    15:1,
+    16:1,
+    17:1,
 }
 
 bite_odds_map = set_chances(bite_odds_default)
 
 # default fish rarity percentages
 rarity_default = {
-     "common": 55,
-     "uncommon": 35,
-     "rare": 9,
-     "promo": 1,
+    "common": 55,
+    "uncommon": 35,
+    "rare": 9,
+    "promo": 1,
 }
 
 rarity_map = set_chances(rarity_default)
 
 # default fish size percantages
 size_default = {
-     "miniscule": 5,
-     "small": 20,
-     "average": 50,
-     "big": 20,
-     "huge": 4,
-     "colossal": 1
+    "miniscule": 5,
+    "small": 20,
+    "average": 50,
+    "big": 20,
+    "huge": 4,
+    "colossal": 1
 }
 
 size_map = set_chances(size_default)
 
 bite_text = {
-     "miniscule": "You feel a wimpy tug at your fishing pole!",
-     "small": "You feel a mediocre tug at your fishing pole!",
-     "average": "You feel a modest tug at your fishing pole!",
-     "big": "You feel a hefty tug at your fishing pole!",
-     "huge": "You feel a ferocious tug at your fishing pole!",
-     "colossal": "You feel a tug at your fishing pole so intense it almost sweeps you off your feet!"
+    "miniscule": "You feel a wimpy tug at your fishing pole!",
+    "small": "You feel a mediocre tug at your fishing pole!",
+    "average": "You feel a modest tug at your fishing pole!",
+    "big": "You feel a hefty tug at your fishing pole!",
+    "huge": "You feel a ferocious tug at your fishing pole!",
+    "colossal": "You feel a tug at your fishing pole so intense it almost sweeps you off your feet!"
 }
 
 # point calculation for now will be rarity * size based on these values
 # i like how these values range right now, smallest is 1,100 and largest is 110,000
 points_vals = {
-     "common": 52,
-     "uncommon": 103,
-     "rare": 234,
-     "promo": 497,
-     "miniscule": 23,
-     "small": 49,
-     "average": 87,
-     "big": 111,
-     "huge": 151,
-     "colossal": 223
+    "common": 52,
+    "uncommon": 103,
+    "rare": 234,
+    "promo": 497,
+    "miniscule": 23,
+    "small": 49,
+    "average": 87,
+    "big": 111,
+    "huge": 151,
+    "colossal": 223
 }
 
 channel_lakefront = 1327418589627682856

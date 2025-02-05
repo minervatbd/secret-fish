@@ -7,7 +7,7 @@ import cfg
 
 from backend import User, DexEntry
 
-FISH_DEBUG = True
+FISH_DEBUG = False
 
 """ class for storing info about a fishing action in progress """
 class Fisher:
