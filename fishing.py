@@ -33,6 +33,23 @@ class Fisher:
 fishers = {}
 fishing_counter = 0
 
+# generates fish species and size
+def gen_fish(fisher):
+	fisher.current_size = cfg.size_map[random.randint(1, 100)]
+	
+	fish_pool = []
+
+	rarity = cfg.rarity_map[random.randint(1, 100)]
+
+	for f in cfg.fish_names:
+		if cfg.fish_map[f].rarity == rarity:
+			fish_pool.append(f)
+	
+	# TODO: implement weather/time catching mechanics
+	# but for now:
+
+	fisher.current_fish = random.choice(fish_pool)
+
 """ simple test command """
 async def test(cmd):
 	response = 'tested'
@@ -64,7 +81,7 @@ async def cast(cmd):
 
 		await utils.send_message(channel, author, response)
 
-		fisher.current_fish = genFish()
+		gen_fish(fisher)
 
 		# do some stuff with variables for later
 		bite_text = "Bite!"
@@ -175,6 +192,3 @@ async def reel(cmd):
 		fisher.stop()
 
 	return await utils.send_message(channel, author, response)
-
-def genFish():
-	return random.choice(cfg.fish_names)
