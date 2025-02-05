@@ -84,7 +84,7 @@ async def cast(cmd):
 		gen_fish(fisher)
 
 		# do some stuff with variables for later
-		bite_text = "Bite!"
+		bite_text = cfg.bite_text[fisher.current_size] + " **!REEL NOW!!!!!**"
 
 		global fishing_counter
 		fishing_counter += 1

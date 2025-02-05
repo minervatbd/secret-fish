@@ -14,6 +14,12 @@ def set_chances(indict):
         current += indict[s]
     return outdict
 
+# all the commands/alt commands
+cmd_prefix = "!"
+cmd_test = cmd_prefix + "test"
+cmd_cast = cmd_prefix + "cast"
+cmd_reel = cmd_prefix + "reel"
+
 update_hookstillactive = 60 * 60 * 3
 
 # fish timers in seconds
@@ -42,11 +48,14 @@ size_default = {
 
 size_map = set_chances(size_default)
 
-# all the commands/alt commands
-cmd_prefix = "!"
-cmd_test = cmd_prefix + "test"
-cmd_cast = cmd_prefix + "cast"
-cmd_reel = cmd_prefix + "reel"
+bite_text = {
+     "miniscule": "You feel a wimpy tug at your fishing pole!",
+     "small": "You feel a mediocre tug at your fishing pole!",
+     "average": "You feel a modest tug at your fishing pole!",
+     "big": "You feel a hefty tug at your fishing pole!",
+     "huge": "You feel a ferocious tug at your fishing pole!",
+     "colossal": "You feel a tug at your fishing pole so intense it almost sweeps you off your feet!"
+}
 
 channel_lakefront = 1327418589627682856
 channel_shop = 1329604548314271875
