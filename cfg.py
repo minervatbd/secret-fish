@@ -39,9 +39,9 @@ rarity_map = set_chances(rarity_default)
 # default fish size percantages
 size_default = {
      "miniscule": 5,
-     "small": 15,
+     "small": 20,
      "average": 50,
-     "big": 15,
+     "big": 20,
      "huge": 4,
      "colossal": 1
 }
