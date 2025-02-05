@@ -1,11 +1,48 @@
 import filehelpers
 import fishstatic
 
+# helper functions for building the chance dictionaries
+def set_all(d, keys, value):
+    for k in keys:
+        d[k] = value
+
+def set_chances(indict):
+    outdict = {}
+    current = 1
+    for s in indict.keys():
+        set_all(outdict, range(current, current + indict[s]), s)
+        current += indict[s]
+    return outdict
+
 update_hookstillactive = 60 * 60 * 3
 
+# fish timers in seconds
 fish_timer_default = 60
 reel_timer_default = 10
 
+# default fish rarity percentages
+rarity_default = {
+     "common": 55,
+     "uncommon": 35,
+     "rare": 9,
+     "promo": 1,
+}
+
+rarity_map = set_chances(rarity_default)
+
+# default fish size percantages
+size_default = {
+     "miniscule": 5,
+     "small": 15,
+     "average": 50,
+     "big": 15,
+     "huge": 4,
+     "colossal": 1
+}
+
+size_map = set_chances(size_default)
+
+# all the commands/alt commands
 cmd_prefix = "!"
 cmd_test = cmd_prefix + "test"
 cmd_cast = cmd_prefix + "cast"
