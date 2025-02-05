@@ -7,6 +7,7 @@ import shlex
 import utils
 import cfg
 import fishing
+import filehelpers
 
 from models import Cmd
 
@@ -115,7 +116,7 @@ intents = discord.Intents.default()
 intents.message_content = True
 
 # find our REST API token
-token = utils.getToken()
+token = filehelpers.getToken()
 
 if token == None or len(token) == 0:
     utils.logMsg('Please place your API token in a file called "token", in the same directory as this script.')

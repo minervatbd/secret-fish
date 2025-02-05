@@ -1,4 +1,4 @@
-import utils
+import filehelpers
 import fishstatic
 
 update_hookstillactive = 60 * 60 * 3
@@ -35,7 +35,7 @@ no_bite_text = [
 	"Shouldn't you be doing something productive?",
 ]
 
-extra_no_bite_text = utils.getStrListFromFileContents("extra_no_bite_text")
+extra_no_bite_text = filehelpers.getStrListFromFileContents("extra_no_bite_text")
 
 for txt in extra_no_bite_text:
     no_bite_text.append(txt)
@@ -46,7 +46,7 @@ fish_map = {}
 fish_names = []
 
 fish_list_full.extend(fishstatic.fish_list)
-fish_list_full.extend(utils.getExtraFish('extra_fish.json'))
+fish_list_full.extend(filehelpers.getExtraFish('extra_fish.json'))
 
 # Populate fish map, including all aliases.
 for fishstatic in fish_list_full:
@@ -55,3 +55,19 @@ for fishstatic in fish_list_full:
 
 	for alias in fishstatic.alias:
 		fish_map[alias] = fishstatic
+
+# database row titles
+col_id_user = "id_user"
+col_id_server = "id_server"
+col_points = "points"
+col_identity = "identity"
+col_id_fish = "id_fish"
+col_catch_count = "catch_count"
+col_dex_count = "dex_count"
+
+# sql credentials
+db_host = "localhost"
+db_username = "fishmaster"
+db_password = "secret"
+db_dbname = "fish"
+db_charset = "utf8mb4"

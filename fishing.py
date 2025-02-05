@@ -5,7 +5,30 @@ import random
 import utils
 import cfg
 
-from models import Fisher
+from backend import User, DexEntry
+
+FISH_DEBUG = True
+
+""" class for storing info about a fishing action in progress """
+class Fisher:
+	fishing = False
+	bite = False
+	current_fish = ""
+	current_size = ""
+	pier = ""
+	bait = False
+	high = False
+	fishing_id = 0
+
+	def stop(self): 
+		self.fishing = False
+		self.bite = False
+		self.current_fish = ""
+		self.current_size = ""
+		self.pier = ""
+		self.bait = False
+		self.high = False
+		self.fishing_id = 0
 
 fishers = {}
 fishing_counter = 0
@@ -41,6 +64,8 @@ async def cast(cmd):
 
 		await utils.send_message(channel, author, response)
 
+		fisher.current_fish = genFish()
+
 		# do some stuff with variables for later
 		bite_text = "Bite!"
 
@@ -63,6 +88,9 @@ async def cast(cmd):
 				fun = 1
 			else:
 				damp = random.randrange(fun)
+			
+			if FISH_DEBUG:
+				break
 			
 			await asyncio.sleep(fish_timer)
 
@@ -92,7 +120,6 @@ async def cast(cmd):
 
 		if fisher.bite != False:
 			response = "The fish got away..."
-			return await utils.send_message(channel, author, response)
 		
 		else:
 			has_reeled = True
@@ -100,7 +127,7 @@ async def cast(cmd):
 		fisher.stop()
 	
 	# Don't send out a response if the user actually reeled in a fish, since that gets sent by the reel command instead.
-	if has_reeled is False:
+	if has_reeled == False:
 		return await utils.send_message(channel, author, response)
 	
 """ Reels in the fishing line.. """
@@ -128,7 +155,26 @@ async def reel(cmd):
 
 	# On successful reel.
 	else:
-		response = "You reel in a big fat fish!"
+		response = "You reel in a {}!".format(cfg.fish_map[fisher.current_fish].str_name)
+
+		user_data = User(member = author)
+
+		user_data.points += 90
+
+		dex_data = DexEntry(member = author, id_fish = fisher.current_fish)
+
+		dex_data.catch_count += 1
+
+		if dex_data.catch_count == 1:
+			user_data.dex_count += 1
+			response += " New type of fish!"
+		
+		user_data.persist()
+		dex_data.persist()
+
 		fisher.stop()
 
 	return await utils.send_message(channel, author, response)
+
+def genFish():
+	return random.choice(cfg.fish_names)
