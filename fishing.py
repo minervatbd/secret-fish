@@ -40,10 +40,10 @@ def gen_fish(fisher):
 	
 	fish_pool = []
 
-	fisher.rarity = cfg.rarity_map[random.randint(1, 100)]
+	fisher.current_rarity = cfg.rarity_map[random.randint(1, 100)]
 
 	for f in cfg.fish_names:
-		if cfg.fish_map[f].rarity == fisher.rarity:
+		if cfg.fish_map[f].rarity == fisher.current_rarity:
 			fish_pool.append(f)
 	
 	# TODO: implement weather/time catching mechanics
@@ -80,6 +80,10 @@ async def cast(cmd):
 
 		response = "You cast your fishing line into the glowing blue lake."
 
+		min_count = cfg.bite_odds_map[random.randint(1, 100)]
+		
+		response += " fish will bite in " + str(min_count) + " mins"
+
 		await utils.send_message(channel, author, response)
 
 		gen_fish(fisher)
@@ -94,22 +98,11 @@ async def cast(cmd):
 		fish_timer = cfg.fish_timer_default
 		reel_timer = cfg.reel_timer_default
 		
-		# User has a 1/10 chance to get a bite
-		fun = 100
-
-		bun = 0
-
-		# loop that runs until the cast is cancelled or a bite is rolled
-		while not utils.TERMINATE:
-			
-			if fun <= 0:
-				fun = 1
-			else:
-				damp = random.randrange(fun)
+		while not utils.TERMINATE and min_count > 0:
 			
 			if FISH_DEBUG:
 				break
-			
+
 			await asyncio.sleep(fish_timer)
 
 			# if fishing was cancelled
@@ -117,17 +110,10 @@ async def cast(cmd):
 				fisher.stop()
 				return
 
-			if damp > 10:
-				await utils.send_message(channel, author, random.choice(cfg.no_bite_text))
-				fun -= 2
-				bun += 1
-				if bun >= 5:
-					fun -= 1
-				if bun >= 15:
-					fun -= 1
-				continue
-			else:
-				break
+			await utils.send_message(channel, author, random.choice(cfg.no_bite_text))
+
+			min_count -= 1
+
 		
 		# bite happens when loop breaks
 		fisher.bite = True

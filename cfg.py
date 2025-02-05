@@ -1,5 +1,6 @@
 import filehelpers
 import fishstatic
+import random
 
 # helper functions for building the chance dictionaries
 def set_all(d, keys, value):
@@ -25,6 +26,29 @@ update_hookstillactive = 60 * 60 * 3
 # fish timers in seconds
 fish_timer_default = 60
 reel_timer_default = 10
+
+# fishing minute count odds
+bite_odds_default = {
+     1:2,
+     2:5,
+     3:8,
+     4:11,
+     5:12,
+     6:11,
+     7:9,
+     8:8,
+     9:8,
+     10:8,
+     11:6,
+     12:4,
+     13:3,
+     14:2,
+     15:1,
+     16:1,
+     17:1,
+}
+
+bite_odds_map = set_chances(bite_odds_default)
 
 # default fish rarity percentages
 rarity_default = {
