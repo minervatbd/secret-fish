@@ -30,3 +30,20 @@ async def identify(cmd):
     
     return await utils.send_message(cmd.message.channel, author, response)
 
+async def status(cmd):
+    author = cmd.message.author
+    response = "You are "
+
+    if cmd.mentions_count == 0:
+        user_data = User(member = author)
+
+    else:
+        member = cmd.mentions[0]
+        user_data = User(member = author)
+        
+        if member != author:
+            response = "{} is ".format(member.display_name)
+    
+    response += "a fisher{} with {} fishpoints.".format(user_data.identity, user_data.points)
+    
+    return await utils.send_message(cmd.message.channel, author, response)

@@ -22,6 +22,9 @@ cmd_map = {
     cfg.cmd_id_1: cmd.identify,
     cfg.cmd_id_2: cmd.identify,
     cfg.cmd_id_3: cmd.identify,
+    cfg.cmd_stats_1: cmd.status,
+    cfg.cmd_stats_2: cmd.status,
+    cfg.cmd_stats_3: cmd.status,
 }
 
 class MyClient(discord.Client):

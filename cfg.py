@@ -22,6 +22,9 @@ cmd_reel = cmd_prefix + "reel"
 cmd_id_1 = cmd_prefix + "identify"
 cmd_id_2 = cmd_prefix + "identifyas"
 cmd_id_3 = cmd_prefix + "setgender"
+cmd_stats_1 = cmd_prefix + "status"
+cmd_stats_2 = cmd_prefix + "points"
+cmd_stats_3 = cmd_prefix + "check"
 
 update_hookstillactive = 60 * 60 * 3
 
