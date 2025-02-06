@@ -2,17 +2,17 @@ import filehelpers
 import fishstatic
 
 # helper functions for building the chance dictionaries
-def set_all(d, keys, value):
-    for k in keys:
-        d[k] = value
+def set_all(d, range, value):
+    for s in range:
+        d.append(value)
 
 def set_chances(indict):
-    outdict = {}
+    outlist = []
     current = 1
     for s in indict.keys():
-        set_all(outdict, range(current, current + indict[s]), s)
+        set_all(outlist, range(current, current + indict[s]), s)
         current += indict[s]
-    return outdict
+    return outlist
 
 # all the commands/alt commands
 cmd_prefix = "!"
@@ -47,7 +47,7 @@ bite_odds_default = {
     17:1,
 }
 
-bite_odds_map = set_chances(bite_odds_default)
+bite_odds_picker = set_chances(bite_odds_default)
 
 # default fish rarity percentages
 rarity_default = {
@@ -57,7 +57,7 @@ rarity_default = {
     "promo": 1,
 }
 
-rarity_map = set_chances(rarity_default)
+rarity_picker = set_chances(rarity_default)
 
 # default fish size percantages
 size_default = {
@@ -69,7 +69,7 @@ size_default = {
     "colossal": 1
 }
 
-size_map = set_chances(size_default)
+size_picker = set_chances(size_default)
 
 bite_text = {
     "miniscule": "You feel a wimpy tug at your fishing pole!",

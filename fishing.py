@@ -36,11 +36,11 @@ fishing_counter = 0
 
 # generates fish species and size
 def gen_fish(fisher):
-	fisher.current_size = cfg.size_map[random.randint(1, 100)]
+	fisher.current_size = random.choice(cfg.size_picker)
 	
 	fish_pool = []
 
-	fisher.current_rarity = cfg.rarity_map[random.randint(1, 100)]
+	fisher.current_rarity = random.choice(cfg.rarity_picker)
 
 	for f in cfg.fish_names:
 		if cfg.fish_map[f].rarity == fisher.current_rarity:
@@ -80,7 +80,7 @@ async def cast(cmd):
 
 		response = "You cast your fishing line into the glowing blue lake."
 
-		min_count = cfg.bite_odds_map[random.randint(1, 100)]
+		min_count = random.choice(cfg.bite_odds_picker)
 		
 		response += " fish will bite in " + str(min_count) + " mins"
 
