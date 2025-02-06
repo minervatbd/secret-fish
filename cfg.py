@@ -19,8 +19,13 @@ cmd_prefix = "!"
 cmd_test = cmd_prefix + "test"
 cmd_cast = cmd_prefix + "cast"
 cmd_reel = cmd_prefix + "reel"
+cmd_id_1 = cmd_prefix + "identify"
+cmd_id_2 = cmd_prefix + "identifyas"
+cmd_id_3 = cmd_prefix + "setgender"
 
 update_hookstillactive = 60 * 60 * 3
+
+max_id_len = 20
 
 # fish timers in seconds
 fish_timer_default = 60

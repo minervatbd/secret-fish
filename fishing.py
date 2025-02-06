@@ -51,11 +51,6 @@ def gen_fish(fisher):
 
 	fisher.current_fish = random.choice(fish_pool)
 
-""" simple test command """
-async def test(cmd):
-	response = 'tested'
-	return await utils.send_message(cmd.message.channel, cmd.message.author, response)
-
 """ Casts a line into the Water """
 async def cast(cmd):
 	author = cmd.message.author

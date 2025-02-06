@@ -41,7 +41,7 @@ async def send_message(channel, user_target = None, text = None, embed = None, d
         logMsg('Failed to send message to channel: {}\n{}'.format(channel, text))
 
 def formatMessage(user_target, message):
-    return "*{}*: {}".format(user_target.display_name, message).replace("@", "\{at\}")
+    return "*{}*: {}".format(user_target.display_name, message).replace("@", "\\{at\\}")
 
 """ connect to the database """
 def databaseConnect():

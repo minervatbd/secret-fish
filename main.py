@@ -8,6 +8,7 @@ import utils
 import cfg
 import fishing
 import filehelpers
+import cmd # type: ignore
 
 from models import Cmd
 
@@ -15,9 +16,12 @@ utils.logMsg('Starting up...')
 init_complete = False
 
 cmd_map = {
-    cfg.cmd_test: fishing.test,
     cfg.cmd_cast: fishing.cast,
     cfg.cmd_reel: fishing.reel,
+    cfg.cmd_test: cmd.test,
+    cfg.cmd_id_1: cmd.identify,
+    cfg.cmd_id_2: cmd.identify,
+    cfg.cmd_id_3: cmd.identify,
 }
 
 class MyClient(discord.Client):
