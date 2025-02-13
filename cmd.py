@@ -34,6 +34,7 @@ async def identify(cmd):
 async def status(cmd):
     author = cmd.message.author
     response = "You are "
+    dex_text = "You "
 
     if cmd.mentions_count == 0:
         user_data = User(member = author)
@@ -44,7 +45,9 @@ async def status(cmd):
         
         if member != author:
             response = "{} is ".format(member.display_name)
+            dex_text = "They "
     
     response += "a fisher{} with {} fishpoints.".format(user_data.identity, user_data.points)
+    response += dex_text + "have caught {} unique species of fish.".format(user_data.dex_count)
     
     return await utils.send_message(cmd.message.channel, author, response)
