@@ -30,6 +30,7 @@ async def identify(cmd):
     
     return await utils.send_message(cmd.message.channel, author, response)
 
+""" check your own or someone else's status """
 async def status(cmd):
     author = cmd.message.author
     response = "You are "
