@@ -21,6 +21,9 @@ class User:
 
 		if self.points < 0:
 			self.points = 0
+		
+		if self.dex_count < 0:
+			self.points = 0
 	
 	# create a new user and optionally retrieve from database
 	def __init__(self, member):
