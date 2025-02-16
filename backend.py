@@ -32,62 +32,24 @@ class User:
 		self.id_server = member.guild.id
 		self.id_user = int(member.id)
 
-		try:
-			conn_info = utils.databaseConnect()
-			conn = conn_info.get('conn')
-			cursor = conn.cursor()
+		result_arr = utils.sql_select(table = cfg.tab_users,
+					 target_cols = (cfg.col_points, cfg.col_identity, cfg.col_dex_count),
+					 	val_cols = (cfg.col_id_user, cfg.col_id_server),
+						 	vals = (self.id_user, self.id_server))
+		
+		result = result_arr[0]
 
-			# Retrieve object
-
-			cursor.execute(
-                "SELECT  {}, {}, {} FROM users WHERE id_user = %s AND id_server = %s".format(
-                    cfg.col_points,
-                    cfg.col_identity,
-					cfg.col_dex_count
-				), (
-					self.id_user,
-					self.id_server
-				))
-			result = cursor.fetchone()
-
-			if result != None:
-				# Record found: apply the data to this object
-				self.points = result[0]
-				self.identity = result[1]
-				self.dex_count = result[2]
-
-		finally:
-			# Clean up the database handles.
-			cursor.close()
-			utils.databaseClose(conn_info)
+		if result != None:
+			# Record found: apply the data to this object
+			self.points = result[0]
+			self.identity = result[1]
+			self.dex_count = result[2]
 	
 	def persist(self):
-		try:
-			conn_info = utils.databaseConnect()
-			conn = conn_info.get('conn')
-			cursor = conn.cursor()
-
-			# Save the object.
-			cursor.execute(
-				"REPLACE INTO users({}, {}, {}, {}, {}) VALUES(%s, %s, %s, %s, %s)".format(
-					cfg.col_id_user,
-					cfg.col_id_server,
-					cfg.col_points,
-					cfg.col_identity,
-					cfg.col_dex_count,
-				), (
-					self.id_user,
-					self.id_server,
-					self.points,
-					self.identity,
-					self.dex_count,
-				))
-
-			conn.commit()
-		finally:
-			# Clean up the database handles.
-			cursor.close()
-			utils.databaseClose(conn_info)
+		
+		utils.sql_replace(table = cfg.tab_users,
+					cols = (cfg.col_id_user, cfg.col_id_server, cfg.col_points, cfg.col_identity, cfg.col_dex_count,),
+					vals = (self.id_user, self.id_server, self.points, self.identity, self.dex_count))
 
 """ for storing dex entries """
 class DexEntry:
@@ -107,56 +69,19 @@ class DexEntry:
 		self.id_user = member.id
 		self.id_server = member.guild.id
 
-		try:
-			conn_info = utils.databaseConnect()
-			conn = conn_info.get('conn')
-			cursor = conn.cursor()
-			
-			# Retrieve object
-			cursor.execute("SELECT {} FROM dex_entries WHERE {} = %s AND {} = %s AND {} = %s".format(
-				cfg.col_catch_count,
-				cfg.col_id_user,
-				cfg.col_id_server,
-				cfg.col_id_fish,
-				
-			), (
-				self.id_user,
-				self.id_server,
-				self.id_fish
-			))
-			result = cursor.fetchone()
-
-			if result != None:
-				# Record found: apply the data to this object.
-				self.catch_count = result[0]
+		result_arr = utils.sql_select(table = cfg.tab_dex_entries,
+					 target_cols = [cfg.col_catch_count],
+					 	val_cols = (cfg.col_id_user, cfg.col_id_server, cfg.col_id_fish),
+						 	vals = (self.id_user, self.id_server, self.id_fish))
 		
-		finally:
-			# Clean up the database handles.
-			cursor.close()
-			utils.databaseClose(conn_info)
+		result = result_arr[0]
+
+		if result != None:
+			# Record found: apply the data to this object.
+			self.catch_count = result[0]
 	
 	def persist(self):
-		try:
-			conn_info = utils.databaseConnect()
-			conn = conn_info.get('conn')
-			cursor = conn.cursor()
-			
-			# Retrieve object
-			cursor.execute(
-				"REPLACE INTO dex_entries({}, {}, {}, {}) VALUES (%s, %s, %s, %s)".format(
-					cfg.col_id_user,
-					cfg.col_id_server,
-					cfg.col_id_fish,
-					cfg.col_catch_count,
-				), (
-					self.id_user,
-					self.id_server,
-					self.id_fish,
-					self.catch_count
-				))
-			
-			conn.commit()
-		finally:
-			# Clean up the database handles.
-			cursor.close()
-			utils.databaseClose(conn_info)
+		utils.sql_replace(table = cfg.tab_dex_entries,
+					cols = (cfg.col_id_user, cfg.col_id_server, cfg.col_id_fish, cfg.col_catch_count),
+					vals = (self.id_user, self.id_server, self.id_fish, self.catch_count))
+

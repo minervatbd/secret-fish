@@ -121,3 +121,91 @@ def execute_sql_query(sql_query = None, sql_replacements = None, fetchone = Fals
         if conn_info is not None: databaseClose(conn_info)
 
     return data
+
+def sql_select(table = "", target_cols = None, val_cols = None, vals = None):
+    if len(vals) == 0 or len(val_cols) != len(vals) or len(target_cols) == 0:
+        logMsg("Error in {} select".format(table))
+
+    try:
+        conn_info = databaseConnect()
+        conn = conn_info.get('conn')
+        cursor = conn.cursor()
+
+        # build the request
+        request = "SELECT "
+        t = 0
+        while t < len(target_cols):
+            if t != 0:
+                request += ", "
+            request += target_cols[t]
+            t += 1
+
+        request += " FROM " + table + " WHERE "
+        v = 0
+        while v < len(vals):
+            if v != 0:
+                request += " AND "
+            curr_val = vals[v]
+            if type(vals[v]) is str:
+                curr_val = "\'" + vals[v] + "\'"
+            request += "{} = {}".format(val_cols[v], curr_val)
+            v += 1
+
+        # Retrieve object
+        cursor.execute(request)
+        result = []
+        for i in cursor:
+            result.append(i)
+		
+    finally:
+        # Clean up the database handles.
+        cursor.close()
+        databaseClose(conn_info)
+	
+    return result
+
+def sql_replace(table = "", cols = None, vals = None):
+    if len(vals) == 0 or len(cols) != len(vals):
+        logMsg("Error in {} replace".format(table))
+    
+    try:
+        conn_info = databaseConnect()
+        conn = conn_info.get('conn')
+        cursor = conn.cursor()
+
+        request = "REPLACE INTO " + table + "("
+
+        t = 0
+        while t < len(cols):
+            if t != 0:
+                request += ", "
+            request += cols[t]
+            t += 1
+        
+        request += ") VALUES("
+
+        v = 0
+        while v < len(vals):
+            if v != 0:
+                request += ", "
+
+            curr_val = ""
+            # type conversion/formatting for values
+            if type(vals[v]) is int:
+                curr_val = str(vals[v])
+            elif type(vals[v]) is str:
+                curr_val = "\'" + vals[v] + "\'"
+            
+            request += curr_val
+            v += 1
+        
+        request += ")"
+
+        # Save the object.
+        cursor.execute(request)
+        conn.commit()
+
+    finally:
+        # Clean up the database handles.
+        cursor.close()
+        databaseClose(conn_info)

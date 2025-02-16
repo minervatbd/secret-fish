@@ -148,6 +148,10 @@ for fishstatic in fish_list_full:
 	for alias in fishstatic.alias:
 		fish_map[alias] = fishstatic
 
+# table names
+tab_users = "users"
+tab_dex_entries = "dex_entries"
+
 # database row titles
 col_id_user = "id_user"
 col_id_server = "id_server"
