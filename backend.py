@@ -1,5 +1,6 @@
-import utils
 import cfg
+
+from queries import SqlQuery
 
 """ main user class """
 class User:
@@ -32,10 +33,14 @@ class User:
 		self.id_server = member.guild.id
 		self.id_user = int(member.id)
 
-		result_arr = utils.sql_select(table = cfg.tab_users,
-					 target_cols = (cfg.col_points, cfg.col_identity, cfg.col_dex_count),
-					 	val_cols = (cfg.col_id_user, cfg.col_id_server),
-						 	vals = (self.id_user, self.id_server))
+		query = SqlQuery(
+			table = cfg.tab_users,
+			target_cols = (cfg.col_points, cfg.col_identity, cfg.col_dex_count),
+			key_cols = (cfg.col_id_user, cfg.col_id_server),
+			key_vals = (self.id_user, self.id_server)
+		)
+		
+		result_arr = query.select()
 		
 		result = result_arr[0]
 
@@ -46,10 +51,11 @@ class User:
 			self.dex_count = result[2]
 	
 	def persist(self):
-		
-		utils.sql_replace(table = cfg.tab_users,
-					cols = (cfg.col_id_user, cfg.col_id_server, cfg.col_points, cfg.col_identity, cfg.col_dex_count,),
-					vals = (self.id_user, self.id_server, self.points, self.identity, self.dex_count))
+		SqlQuery(
+			table = cfg.tab_users,
+			target_cols = (cfg.col_id_user, cfg.col_id_server, cfg.col_points, cfg.col_identity, cfg.col_dex_count,),
+			target_vals = (self.id_user, self.id_server, self.points, self.identity, self.dex_count)
+		).replace()
 
 """ for storing dex entries """
 class DexEntry:
@@ -69,10 +75,14 @@ class DexEntry:
 		self.id_user = member.id
 		self.id_server = member.guild.id
 
-		result_arr = utils.sql_select(table = cfg.tab_dex_entries,
-					 target_cols = [cfg.col_catch_count],
-					 	val_cols = (cfg.col_id_user, cfg.col_id_server, cfg.col_id_fish),
-						 	vals = (self.id_user, self.id_server, self.id_fish))
+		query = SqlQuery(
+			table = cfg.tab_dex_entries,
+			target_cols = [cfg.col_catch_count],
+			key_cols = (cfg.col_id_user, cfg.col_id_server, cfg.col_id_fish),
+			key_vals = (self.id_user, self.id_server, self.id_fish)
+		)
+
+		result_arr = query.select()
 		
 		result = result_arr[0]
 
@@ -81,7 +91,9 @@ class DexEntry:
 			self.catch_count = result[0]
 	
 	def persist(self):
-		utils.sql_replace(table = cfg.tab_dex_entries,
-					cols = (cfg.col_id_user, cfg.col_id_server, cfg.col_id_fish, cfg.col_catch_count),
-					vals = (self.id_user, self.id_server, self.id_fish, self.catch_count))
-
+		SqlQuery(
+			table = cfg.tab_dex_entries,
+			target_cols = (cfg.col_id_user, cfg.col_id_server, cfg.col_id_fish, cfg.col_catch_count),
+			target_vals = (self.id_user, self.id_server, self.id_fish, self.catch_count)
+		).replace()
+		
