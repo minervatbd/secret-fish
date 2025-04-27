@@ -45,9 +45,11 @@ def getExtraFish(fname):
     outlist = []
     try:  
         with open(fname) as f:
-            fish = json.load(f)
-            for i in fish:
-                currentfish = fish[i]
+            fish = json.loads(f.read())
+            x = 0
+            while x < len(fish):
+                currentfish = fish[x]
+                x += 1
                 outlist.append(
                     Fish(
                         id_fish = currentfish['id_fish'],
