@@ -1,5 +1,4 @@
 import filehelpers
-import fishstatic
 
 # helper functions for building the chance dictionaries
 def set_all(d, range, value):
