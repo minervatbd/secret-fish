@@ -113,23 +113,10 @@ shopping_channels = [
     channel_shop
 ]
 
-no_bite_text = [
-    "You patiently wait...",
-    "You start to slip into an existential crisis...",
-	"You hum some sea shanties...",
-    "You watch your hook bob...",
-    "You make direct eye contact with a fish, only to quickly look away...",
-    "Wouldn't it be funny if you just reached into the sea and grabbed one? Haha, yeah, that'd be funny...",
-    "You let out a deep sigh, scaring away a fish...",
-    "Fish...",
-	"You begin to zone-out a bit...",
-	"Shouldn't you be doing something productive?",
-]
+no_bite_text = []
 
-extra_no_bite_text = filehelpers.getStrListFromFileContents("extra_no_bite_text")
-
-for txt in extra_no_bite_text:
-    no_bite_text.append(txt)
+no_bite_text.extend(filehelpers.ParseBiteText("no_bite_texst.json"))
+no_bite_text.extend(filehelpers.ParseBiteText("extra_no_bite_text.json"))
 
 # All the fish, baby!
 fish_list_full = []

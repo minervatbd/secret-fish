@@ -1,5 +1,6 @@
 import json
 
+from utils import logMsg
 from models import Fish
 
 """ read a file named fname and return its contents as a string """
@@ -22,23 +23,23 @@ def getValueFromFileContents(fname):
 
 	return token
 
-""" get a list of strings from a file """
-def getStrListFromFileContents(fname):
-    str_list = []
-
-    try:
-        file = open(fname, "r")
-        str_list = file.readlines()
-    except IOError:
-        print("Could not read {} file.".format(fname))
-    finally:
-        file.close()
-
-    return str_list
-
 """ get the Discord API token from the config file on disk """
 def getToken():
 	return getValueFromFileContents("token")
+
+""" gets a string list from a json of fname """
+def ParseBiteText(fname):
+    # in case we dont find the file, still need to return an empty list
+    outlist = []
+
+    try:
+        f = open(fname)
+        a = f.read()
+        outlist.extend(json.loads(a))
+    except FileNotFoundError:
+        logMsg(fname + " not found.")
+
+    return outlist
 
 """ attempts to get extra fish objects from a json file fname in the directory """
 def ParseFishJson(fname):
@@ -62,6 +63,6 @@ def ParseFishJson(fname):
                         salinity = currentfish['salinity'],
                     ))
     except FileNotFoundError:
-        print("No extra fish JSON found.")
+        logMsg(fname + " not found.")
 
     return outlist
