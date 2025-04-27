@@ -1,0 +1,45 @@
+[
+    {
+        "id_fish": "clouttrout",
+        "str_name": "Clout Trout",
+        "size": "",
+        "rarity": "common",
+        "catch_time": null,
+        "catch_weather": null,
+        "str_desc": "This fish has the eyes of a winner.",
+        "salinity": null
+    },
+
+    {
+        "id_fish": "italiansnapper",
+        "str_name": "Italian Snapper",
+        "size": "",
+        "rarity": "uncommon",
+        "catch_time": null,
+        "catch_weather": null,
+        "str_desc": "You think you can hear this fish murmur some inarticulate Italian noises on occasion.",
+        "salinity": null
+    },
+
+    {
+        "id_fish": "piranhaha",
+        "str_name": "Piranhaha",
+        "size": "",
+        "rarity": "rare",
+        "catch_time": null,
+        "catch_weather": null,
+        "str_desc": "Its toothy smile gives you the creeps. You don't want to know why it's laughing.",
+        "salinity": null
+    },
+
+    {
+        "id_fish": "bathyphysaheadshark",
+        "str_name": "Bathyphysahead Shark",
+        "size": "",
+        "rarity": "promo",
+        "catch_time": null,
+        "catch_weather": "foggy",
+        "str_desc": "This one looks terrifying. I'm serious.",
+        "salinity": "saltwater"
+    }
+]

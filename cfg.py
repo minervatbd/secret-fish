@@ -137,8 +137,8 @@ fish_list_full = []
 fish_map = {}
 fish_names = []
 
-fish_list_full.extend(fishstatic.fish_list)
-fish_list_full.extend(filehelpers.getExtraFish('extra_fish.json'))
+fish_list_full.extend(filehelpers.ParseFishJson('fish.json'))
+fish_list_full.extend(filehelpers.ParseFishJson('extra_fish.json'))
 
 # Populate fish map, including all aliases.
 for fishstatic in fish_list_full:

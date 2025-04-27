@@ -7,7 +7,7 @@ import cfg
 
 from backend import User, DexEntry
 
-FISH_DEBUG = False
+FISH_DEBUG = True
 
 """ class for storing info about a fishing action in progress """
 class Fisher:
@@ -76,8 +76,9 @@ async def cast(cmd):
 		response = "You cast your fishing line into the glowing blue lake."
 
 		min_count = random.choice(cfg.bite_odds_picker)
-		
-		response += " fish will bite in " + str(min_count) + " mins"
+
+		# debug for counting minute bite averages
+		# response += " fish will bite in " + str(min_count) + " mins"
 
 		await utils.send_message(channel, author, response)
 

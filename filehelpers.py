@@ -41,7 +41,7 @@ def getToken():
 	return getValueFromFileContents("token")
 
 """ attempts to get extra fish objects from a json file fname in the directory """
-def getExtraFish(fname):
+def ParseFishJson(fname):
     outlist = []
     try:  
         with open(fname) as f:
