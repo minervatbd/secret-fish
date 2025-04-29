@@ -39,3 +39,17 @@ async def send_message(channel, user_target = None, text = None, embed = None, d
 def formatMessage(user_target, message):
     return "*{}*: {}".format(user_target.display_name, message).replace("@", "\\{at\\}")
 
+"""
+	Find a chat channel by name in a server.
+"""
+def get_channel(server = None, channel_name = ""):
+	channel = None
+
+	for chan in server.channels:
+		if chan.name == channel_name:
+			channel = chan
+	
+	if channel == None:
+		logMsg('Error: In get_channel(), could not find channel using channel_name "{}"'.format(channel_name))
+
+	return channel

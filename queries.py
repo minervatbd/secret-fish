@@ -13,13 +13,19 @@ class SqlQuery:
     target_vals = None
     key_cols = None
     key_vals = None
+    order_col = None
+    is_desc = True
+    limit = -1
 
-    def __init__(self, table = "", target_cols = None, target_vals = None, key_cols = None, key_vals = None):
+    def __init__(self, table = "", target_cols = None, target_vals = None, key_cols = None, key_vals = None, order_col = None, is_desc = True, limit = -1):
         self.table = table
         self.target_cols = target_cols
         self.target_vals = target_vals
         self.key_cols = key_cols
         self.key_vals = key_vals
+        self.order_col = order_col
+        self.is_desc = is_desc
+        self.limit = limit
     
     """ query format: SELECT [target_cols] FROM [table] WHERE [key_cols] = [key_vals] """
 
@@ -51,6 +57,10 @@ class SqlQuery:
                     curr_val = "\'" + self.key_vals[v] + "\'"
                 request += "{} = {}".format(self.key_cols[v], curr_val)
                 v += 1
+            
+            # append ordering clause if limit was specified
+            if self.limit != -1:
+                request += "ORDER BY " + self.order_col + (" DESC" if self.is_desc else " ASC") + " LIMIT " + self.limit
 
             # Retrieve object
             cursor.execute(request)
@@ -112,7 +122,6 @@ class SqlQuery:
             # Clean up the database handles.
             cursor.close()
             databaseClose(conn_info)
-
 
 """ connect to the database """
 def databaseConnect():
