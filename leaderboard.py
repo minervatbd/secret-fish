@@ -16,7 +16,7 @@ def make_points_board(server = None):
 
     result = SqlQuery(
         table = cfg.tab_users,
-        target_cols = [cfg.col_points, cfg.col_id_user],
+        target_cols = [cfg.col_points, cfg.col_display_name],
         key_cols = [cfg.col_id_server],
         key_vals = [server.id],
         order_col = cfg.col_points,

@@ -7,6 +7,8 @@ class User:
 	id_user = -1
 	id_server = -1
 
+	display_name = ""
+
 	# fish points
 	points = 0
 
@@ -32,29 +34,50 @@ class User:
 		# get a user object from a member arg
 		self.id_server = member.guild.id
 		self.id_user = int(member.id)
+		self.display_name = member.display_name
 
 		query = SqlQuery(
 			table = cfg.tab_users,
-			target_cols = (cfg.col_points, cfg.col_identity, cfg.col_dex_count),
+			target_cols = (
+				cfg.col_points,
+				cfg.col_identity,
+				cfg.col_dex_count,
+				cfg.col_display_name,
+			),
 			key_cols = (cfg.col_id_user, cfg.col_id_server),
 			key_vals = (self.id_user, self.id_server)
 		)
 		
 		result_arr = query.select()
 		
-		result = result_arr[0]
+		if (len(result_arr) != 0):
+			result = result_arr[0]
 
-		if result != None:
-			# Record found: apply the data to this object
-			self.points = result[0]
-			self.identity = result[1]
-			self.dex_count = result[2]
+			if result != None:
+				# Record found: apply the data to this object
+				self.points = result[0]
+				self.identity = result[1]
+				self.dex_count = result[2]
 	
 	def persist(self):
 		SqlQuery(
 			table = cfg.tab_users,
-			target_cols = (cfg.col_id_user, cfg.col_id_server, cfg.col_points, cfg.col_identity, cfg.col_dex_count,),
-			target_vals = (self.id_user, self.id_server, self.points, self.identity, self.dex_count)
+			target_cols = (
+				cfg.col_id_user, 
+				cfg.col_id_server, 
+				cfg.col_points, 
+				cfg.col_identity, 
+				cfg.col_dex_count,
+				cfg.col_display_name,
+			),
+			target_vals = (
+				self.id_user,
+				self.id_server,
+				self.points,
+				self.identity,
+				self.dex_count,
+				self.display_name,
+			)
 		).replace()
 
 """ for storing dex entries """
@@ -84,11 +107,12 @@ class DexEntry:
 
 		result_arr = query.select()
 		
-		result = result_arr[0]
+		if (len(result_arr) != 0):
+			result = result_arr[0]
 
-		if result != None:
-			# Record found: apply the data to this object.
-			self.catch_count = result[0]
+			if result != None:
+				# Record found: apply the data to this object.
+				self.catch_count = result[0]
 	
 	def persist(self):
 		SqlQuery(

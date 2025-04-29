@@ -105,7 +105,7 @@ points_vals = {
 channel_lakefront = 1327418589627682856
 channel_shop = 1329604548314271875
 
-channel_leaderboard = "topfish"
+channel_leaderboard = "top-fish"
 
 fishing_channels = [
     channel_lakefront
@@ -143,6 +143,7 @@ tab_dex_entries = "dex_entries"
 # database row titles
 col_id_user = "id_user"
 col_id_server = "id_server"
+col_display_name = "display_name"
 col_points = "points"
 col_identity = "identity"
 col_id_fish = "id_fish"

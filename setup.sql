@@ -1,6 +1,8 @@
 CREATE TABLE users (
     id_user bigint NOT NULL,
     id_server bigint NOT NULL,
+
+    display_name varchar(32) NOT NULL,
     
     points int NOT NULL DEFAULT '0',
     identity varchar(32) NOT NULL DEFAULT '',

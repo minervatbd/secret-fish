@@ -69,9 +69,9 @@ class MyClient(discord.Client):
 
                 utils.logMsg("Periodic hook still active.")
             
+            # Perform periodic server actions
             try:
                 for server in client.guilds:
-                    await utils.send_message(utils.get_channel(server=server, channel_name=cfg.channel_leaderboard), None, "gay")
                     await leaderboard.post_leaderboards(client = client, server = server)
             
             except Exception as e:
