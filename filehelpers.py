@@ -1,6 +1,5 @@
 import json
 
-from utils import logMsg
 from models import Fish
 
 """ read a file named fname and return its contents as a string """
@@ -37,7 +36,7 @@ def ParseBiteText(fname):
         a = f.read()
         outlist.extend(json.loads(a))
     except FileNotFoundError:
-        logMsg(fname + " not found.")
+        print(fname + " not found.")
 
     return outlist
 
@@ -63,6 +62,6 @@ def ParseFishJson(fname):
                         salinity = currentfish['salinity'],
                     ))
     except FileNotFoundError:
-        logMsg(fname + " not found.")
+        print(fname + " not found.")
 
     return outlist

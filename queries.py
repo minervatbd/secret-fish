@@ -60,7 +60,7 @@ class SqlQuery:
             
             # append ordering clause if limit was specified
             if self.limit != -1:
-                request += "ORDER BY " + self.order_col + (" DESC" if self.is_desc else " ASC") + " LIMIT " + self.limit
+                request += " ORDER BY " + self.order_col + (" DESC" if self.is_desc else " ASC") + " LIMIT {}".format(self.limit)
 
             # Retrieve object
             cursor.execute(request)

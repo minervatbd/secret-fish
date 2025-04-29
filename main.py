@@ -9,6 +9,7 @@ import cfg
 import fishing
 import filehelpers
 import cmd # type: ignore
+import leaderboard
 
 from models import Cmd
 
@@ -67,6 +68,14 @@ class MyClient(discord.Client):
                 time_last_logged = time_now
 
                 utils.logMsg("Periodic hook still active.")
+            
+            try:
+                for server in client.guilds:
+                    await utils.send_message(utils.get_channel(server=server, channel_name=cfg.channel_leaderboard), None, "gay")
+                    await leaderboard.post_leaderboards(client = client, server = server)
+            
+            except Exception as e:
+                utils.logMsg("Could not perform periodic guild actions for {}".format(server.name), e)
 
             # Wait a while before running periodic tasks.
             await asyncio.sleep(900)

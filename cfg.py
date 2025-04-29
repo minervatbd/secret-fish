@@ -105,6 +105,8 @@ points_vals = {
 channel_lakefront = 1327418589627682856
 channel_shop = 1329604548314271875
 
+channel_leaderboard = "topfish"
+
 fishing_channels = [
     channel_lakefront
 ]
@@ -115,7 +117,7 @@ shopping_channels = [
 
 no_bite_text = []
 
-no_bite_text.extend(filehelpers.ParseBiteText("no_bite_texst.json"))
+no_bite_text.extend(filehelpers.ParseBiteText("no_bite_text.json"))
 no_bite_text.extend(filehelpers.ParseBiteText("extra_no_bite_text.json"))
 
 # All the fish, baby!
