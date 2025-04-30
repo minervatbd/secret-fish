@@ -121,3 +121,61 @@ class DexEntry:
 			target_vals = (self.id_user, self.id_server, self.id_fish, self.catch_count)
 		).replace()
 		
+""" timeline class which updates clocks/date/weather """
+class Timeline:
+	id_server = -1
+
+	clock = 0
+	weather = cfg.weather_default
+	day = 0
+
+	time_lasttick = 0
+
+	global_catch_count = 0
+
+	def __init__(self, id_server = None):
+		if(id_server != None):
+			self.id_server = id_server
+
+			result_arr = SqlQuery(
+				table = cfg.tab_timelines,
+				target_cols = (
+					cfg.col_time_lasttick,
+					cfg.col_clock,
+					cfg.col_weather,
+					cfg.col_day,
+					cfg.col_global_catch_count,
+				),
+				key_cols = [cfg.col_id_server],
+				key_vals = [id_server],
+			).select()
+
+			if (len(result_arr) != 0):
+				result = result_arr[0]
+
+				self.time_lasttick = result[0]
+				self.clock = result[1]
+				self.weather = result[2]
+				self.day = result[3]
+				self.global_catch_count = result[4]
+
+	def persist(self):
+		SqlQuery(
+			table = cfg.tab_timelines,
+			target_cols = (
+				cfg.col_id_server,
+				cfg.col_time_lasttick,
+				cfg.col_clock,
+				cfg.col_weather,
+				cfg.col_day,
+				cfg.col_global_catch_count,
+			),
+			target_vals = (
+				self.id_server,
+				self.time_lasttick,
+				self.clock,
+				self.weather,
+				self.day,
+				self.global_catch_count,
+			)
+		).replace()

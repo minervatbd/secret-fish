@@ -102,6 +102,12 @@ points_vals = {
     "colossal": 223
 }
 
+weather_types = [
+    "nonplussed",
+]
+
+weather_default = weather_types[0]
+
 channel_lakefront = 1327418589627682856
 channel_shop = 1329604548314271875
 
@@ -139,6 +145,7 @@ for fishstatic in fish_list_full:
 # table names
 tab_users = "users"
 tab_dex_entries = "dex_entries"
+tab_timelines = "timelines"
 
 # database row titles
 col_id_user = "id_user"
@@ -146,9 +153,16 @@ col_id_server = "id_server"
 col_display_name = "display_name"
 col_points = "points"
 col_identity = "identity"
+
 col_id_fish = "id_fish"
 col_catch_count = "catch_count"
 col_dex_count = "dex_count"
+
+col_time_lasttick = "time_lasttick"
+col_clock = "clock"
+col_weather = "weather"
+col_day = "day"
+col_global_catch_count = "global_catch_count"
 
 # sql credentials
 db_host = "localhost"

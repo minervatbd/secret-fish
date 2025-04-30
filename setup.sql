@@ -20,3 +20,12 @@ CREATE TABLE dex_entries (
 
 	PRIMARY KEY (id_user, id_server, id_fish)
 );
+
+CREATE TABLE timelines (
+    id_server bigint NOT NULL,
+    time_lasttick int NOT NULL DEFAULT '0',
+    clock int NOT NULL DEFAULT '0',
+    weather varchar(32) NOT NULL DEFAULT 'nonplussed'
+    day int NOT NULL DEFAULT '1',
+    global_catch_count bigint NOT NULL DEFAULT '0',
+);
