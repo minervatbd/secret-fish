@@ -12,6 +12,7 @@ import cmd # type: ignore
 import leaderboard
 
 from models import Cmd
+from backend import Timeline
 
 utils.logMsg('Starting up...')
 init_complete = False
@@ -72,6 +73,22 @@ class MyClient(discord.Client):
             # Perform periodic server actions
             try:
                 for server in client.guilds:
+                    # get a timeline
+                    timeline_data = Timeline(server.id)
+                    timeline_data.time_lasttick = time_now
+
+                    # advance time
+                    timeline_data.clock += 1
+
+                    # advance day counter
+                    if timeline_data.clock >= 24 or timeline_data.clock < 0:
+                        timeline_data.clock = 0
+                        timeline_data.day += 1
+                    
+                    timeline_data.persist()
+
+                    utils.logMsg("Time now is {}.".format(timeline_data.clock))
+
                     await leaderboard.post_leaderboards(client = client, server = server)
             
             except Exception as e:
