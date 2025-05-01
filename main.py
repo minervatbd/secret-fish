@@ -1,3 +1,4 @@
+import random
 import discord
 import sys
 import asyncio
@@ -73,29 +74,45 @@ class MyClient(discord.Client):
             # Perform periodic server actions
             try:
                 for server in client.guilds:
+
                     # get a timeline
                     timeline_data = Timeline(server.id)
-                    timeline_data.time_lasttick = time_now
 
-                    # advance time
-                    timeline_data.clock += 1
+                    if (time_now - timeline_data.time_lasttick) >= cfg.update_timeline:
 
-                    # advance day counter
-                    if timeline_data.clock >= 24 or timeline_data.clock < 0:
-                        timeline_data.clock = 0
-                        timeline_data.day += 1
-                    
-                    timeline_data.persist()
+                        timeline_data.time_lasttick = time_now
 
-                    utils.logMsg("Time now is {}.".format(timeline_data.clock))
+                        # advance time
+                        timeline_data.clock += 1
 
-                    await leaderboard.post_leaderboards(client = client, server = server)
+                        # advance day counter
+                        if timeline_data.clock >= 24 or timeline_data.clock < 0:
+                            timeline_data.clock = 0
+                            timeline_data.day += 1
+
+                        # utils.logMsg("Time is now {}.".format(timeline_data.clock))
+
+                        # 1/3 chance every tick to change weather
+                        if random.randrange(3) == 0 and len(cfg.weather_types) > 1:
+                            weather_pool = cfg.weather_types.copy()
+
+                            # pick a weather type that is different from the current one
+                            weather_pool.remove(timeline_data.weather)
+                            timeline_data.weather = random.choice(weather_pool)
+                            
+                            utils.logMsg("Weather is now {}.".format(timeline_data.weather))
+                        
+                        timeline_data.persist()
+
+                        # leaderboards get posted at 6 o clock
+                        if timeline_data.clock == 6:
+                            await leaderboard.post_leaderboards(client = client, server = server)
             
             except Exception as e:
                 utils.logMsg("Could not perform periodic guild actions for {}".format(server.name), e)
 
             # Wait a while before running periodic tasks.
-            await asyncio.sleep(900)
+            await asyncio.sleep(15)
     
     async def on_message(self, message):
 

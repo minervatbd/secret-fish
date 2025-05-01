@@ -26,7 +26,7 @@ cmd_stats_2 = cmd_prefix + "points"
 cmd_stats_3 = cmd_prefix + "check"
 
 update_hookstillactive = 60 * 60 * 1
-update_timeline = 900
+update_timeline = 30
 
 max_id_len = 20
 
@@ -105,6 +105,7 @@ points_vals = {
 
 weather_types = [
     "nonplussed",
+    "scuzzy",
 ]
 
 weather_default = weather_types[0]
