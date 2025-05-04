@@ -54,12 +54,12 @@ def ParseFishJson(fname):
                     Fish(
                         id_fish = currentfish['id_fish'],
                         str_name = currentfish['str_name'],
-                        size = currentfish['size'],
+                        # size = currentfish['size'],
                         rarity = currentfish['rarity'],
                         catch_time = currentfish['catch_time'],
                         catch_weather = currentfish['catch_weather'],
                         str_desc = currentfish['str_desc'],
-                        salinity = currentfish['salinity'],
+                        # salinity = currentfish['salinity'],
                     ))
     except FileNotFoundError:
         print(fname + " not found.")

@@ -105,10 +105,16 @@ points_vals = {
 
 weather_types = [
     "nonplussed",
-    "scuzzy",
+    "sultry",
+    "spiky",
+    "dripping",
+    "smudged",
+    "rapturous",
 ]
 
 weather_default = weather_types[0]
+
+role_fisher = 1368682228770672843
 
 channel_lakefront = 1327418589627682856
 channel_shop = 1329604548314271875

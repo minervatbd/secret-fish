@@ -109,7 +109,7 @@ class MyClient(discord.Client):
                             await leaderboard.post_leaderboards(client = client, server = server)
             
             except Exception as e:
-                utils.logMsg("Could not perform periodic guild actions for {}".format(server.name), e)
+                utils.logMsg("Could not perform periodic guild actions for {}".format(server.name))
 
             # Wait a while before running periodic tasks.
             await asyncio.sleep(15)
@@ -119,6 +119,10 @@ class MyClient(discord.Client):
         """ do not interact with our own messages """
         if message.author.id == client.user.id or message.author.bot == True:
             return
+        
+        """ add role if needed """
+        if len(message.author.roles) == 1:
+            await message.author.edit(roles = [message.guild.get_role(cfg.role_fisher)])
                 
         if message.content.startswith(cfg.cmd_prefix):
 

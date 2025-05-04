@@ -5,9 +5,9 @@ import random
 import utils
 import cfg
 
-from backend import User, DexEntry
+from backend import User, DexEntry, Timeline
 
-FISH_DEBUG = False
+FISH_DEBUG = True
 
 """ class for storing info about a fishing action in progress """
 class Fisher:
@@ -35,7 +35,7 @@ fishers = {}
 fishing_counter = 0
 
 # generates fish species and size
-def gen_fish(fisher):
+def gen_fish(fisher, weather):
 	fisher.current_size = random.choice(cfg.size_picker)
 	
 	fish_pool = []
@@ -43,11 +43,13 @@ def gen_fish(fisher):
 	fisher.current_rarity = random.choice(cfg.rarity_picker)
 
 	for f in cfg.fish_names:
-		if cfg.fish_map[f].rarity == fisher.current_rarity:
-			fish_pool.append(f)
+		curr_fish = cfg.fish_map[f]
+		# add if the rarity aligns
+		if curr_fish.rarity == fisher.current_rarity:
+			# add if the weather aligns
+			if curr_fish.catch_weather == None or curr_fish.catch_weather == weather:
+				fish_pool.append(f)
 	
-	# TODO: implement weather/time catching mechanics
-	# but for now:
 
 	fisher.current_fish = random.choice(fish_pool)
 
@@ -56,6 +58,8 @@ async def cast(cmd):
 	author = cmd.message.author
 	channel = cmd.message.channel
 	has_reeled = False
+
+	timeline = Timeline(id_server = cmd.message.guild.id)
 
 	if author.id not in fishers.keys():
 		fishers[author.id] = Fisher()
@@ -82,7 +86,7 @@ async def cast(cmd):
 
 		await utils.send_message(channel, author, response)
 
-		gen_fish(fisher)
+		gen_fish(fisher, timeline.weather)
 
 		# do some stuff with variables for later
 		bite_text = cfg.bite_text[fisher.current_size] + " **!REEL NOW!!!!!**"
