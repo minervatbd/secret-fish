@@ -2,44 +2,425 @@
     {
         "id_fish": "clouttrout",
         "str_name": "Clout Trout",
-        "size": "",
         "rarity": "common",
         "catch_time": null,
         "catch_weather": null,
-        "str_desc": "This fish has the eyes of a winner.",
-        "salinity": null
+        "str_desc": "I'll do anything for you, Clout Trout."
     },
-
+    {
+        "id_fish": "neoneel",
+        "str_name": "Neon Eel",
+        "rarity": "common",
+        "catch_time": null,
+        "catch_weather": null,
+        "str_desc": "Its slippery body emits a uranium glow."
+    },
+    {
+        "id_fish": "moldfish",
+        "str_name": "Mold Fish",
+        "rarity": "common",
+        "catch_time": null,
+        "catch_weather": null,
+        "str_desc": "These fish are coated in an array of colorful, luminous bacteria, making them easy to spot and hell to digest."
+    },
+    {
+        "id_fish": "oozingsalmon",
+        "str_name": "Oozing Salmon",
+        "rarity": "common",
+        "catch_time": null,
+        "catch_weather": "sultry",
+        "str_desc": "You'd love to put it on a bagel, but their innards are so runny that it'll never stay on one."
+    },
+    {
+        "id_fish": "girlmullet",
+        "str_name": "Girl Mullet",
+        "rarity": "common",
+        "catch_time": null,
+        "catch_weather": null,
+        "str_desc": "Aww, it's got a little bow on its head."
+    },
+    {
+        "id_fish": "cruna",
+        "str_name": "Cruna",
+        "rarity": "common",
+        "catch_time": null,
+        "catch_weather": null,
+        "str_desc": "They're calling him the fishy Sinatra."
+    },
+    {
+        "id_fish": "flarp",
+        "str_name": "Flarp",
+        "rarity": "common",
+        "catch_time": null,
+        "catch_weather": "spiky",
+        "str_desc": "It has an odd rubbery feel. You try not to fidget with it too much before tossing it back."
+    },
+    {
+        "id_fish": "flopfish",
+        "str_name": "Flop Fish",
+        "rarity": "common",
+        "catch_time": null,
+        "catch_weather": null,
+        "str_desc": "You struggle to keep a grip on it. It lives up to its name!"
+    },
+    {
+        "id_fish": "bufferfish",
+        "str_name": "Bufferfish",
+        "rarity": "common",
+        "catch_time": null,
+        "catch_weather": "spiky",
+        "str_desc": "They're said to outwit predators by rate-limiting them."
+    },
+    {
+        "id_fish": "easysardine",
+        "str_name": "Easy Sardine",
+        "rarity": "common",
+        "catch_time": null,
+        "catch_weather": null,
+        "str_desc": "These guys are a popular snack among old men and body builders, or so you've heard."
+    },
+    {
+        "id_fish": "nibblefish",
+        "str_name": "Nibblefish",
+        "rarity": "common",
+        "catch_time": null,
+        "catch_weather": "nonplussed",
+        "str_desc": "It keeps chewing on the hook the entire time you reel it up."
+    },
+    {
+        "id_fish": "eightballfish",
+        "str_name": "8-Ball Fish",
+        "rarity": "common",
+        "catch_time": null,
+        "catch_weather": null,
+        "str_desc": "If you shake it, it will tell your fortune, but would you really be so cruel?"
+    },
+    {
+        "id_fish": "goldfishinabag",
+        "str_name": "Goldfish in a Bag",
+        "rarity": "common",
+        "catch_time": null,
+        "catch_weather": "dripping",
+        "str_desc": "You maintain eye contact with the imprisoned fish as it reminds you of your glory days at the carnival."
+    },
+    {
+        "id_fish": "catphish",
+        "str_name": "Catphish",
+        "rarity": "common",
+        "catch_time": null,
+        "catch_weather": null,
+        "str_desc": "You get the uncomfortable sense that this fish is sizing you up, contemplating ways to rip you off."
+    },
+    {
+        "id_fish": "mrlimpet",
+        "str_name": "Mr. Limpet",
+        "rarity": "common",
+        "catch_time": null,
+        "catch_weather": null,
+        "str_desc": "https://youtu.be/ahjTClTCdjs"
+    },
+    {
+        "id_fish": "lostfrog",
+        "str_name": "Lost Frog",
+        "rarity": "common",
+        "catch_time": null,
+        "catch_weather": "smudged",
+        "str_desc": "After giving him some directions, he hops away in search of his destination."
+    },
+    {
+        "id_fish": "cowboyfish",
+        "str_name": "Cowboy Fish",
+        "rarity": "common",
+        "catch_time": null,
+        "catch_weather": null,
+        "str_desc": "In the far side of the cave, you hear some Morricone echo softly."
+    },
+    {
+        "id_fish": "flightlessfish",
+        "str_name": "Flightless Fish",
+        "rarity": "common",
+        "catch_time": null,
+        "catch_weather": "dripping",
+        "str_desc": "Who cares? Aren't, like, ALL fish flightless?"
+    },
+    {
+        "id_fish": "suavestinger",
+        "str_name": "Suave Mauve Stinger",
+        "rarity": "common",
+        "catch_time": null,
+        "catch_weather": null,
+        "str_desc": "Its round, translucent, violet bell makes you a bit red in the cheeks. So pretty..."
+    },
+    {
+        "id_fish": "sticksturgeon",
+        "str_name": "Sticky Sturgeon",
+        "rarity": "common",
+        "catch_time": null,
+        "catch_weather": "sultry",
+        "str_desc": "You still feel its residue on your fingers after you release it. Eugh."
+    },
+    {
+        "id_fish": "soysardine",
+        "str_name": "Soy Sardine",
+        "rarity": "common",
+        "catch_time": null,
+        "catch_weather": null,
+        "str_desc": "Technically, this fish can be used in vegan dishes."
+    },
+    {
+        "id_fish": "gigglygoby",
+        "str_name": "Giggly Goby",
+        "rarity": "common",
+        "catch_time": null,
+        "catch_weather": null,
+        "str_desc": "Fishing is a serious matter, this is no time to giggle."
+    },
     {
         "id_fish": "italiansnapper",
         "str_name": "Italian Snapper",
-        "size": "",
+        "rarity": "common",
+        "catch_time": null,
+        "catch_weather": null,
+        "str_desc": "It reeks of spoiled mozzarella and Catholic guilt. Marone..."
+    },
+    {
+        "id_fish": "gooper",
+        "str_name": "Gooper",
+        "rarity": "common",
+        "catch_time": null,
+        "catch_weather": "sultry",
+        "str_desc": "You repeat the name to yourself a few times in a Lynch voice."
+    },
+    {
+        "id_fish": "hardboiledturtle",
+        "str_name": "Hard Boiled Turtle",
+        "rarity": "uncommon",
+        "catch_time": null,
+        "catch_weather": "smudged",
+        "str_desc": "As you reel him in, he takes a drag of his cigarette. Uh, don't question it."
+    },
+    {
+        "id_fish": "scabgrabber",
+        "str_name": "Scab Grabber",
         "rarity": "uncommon",
         "catch_time": null,
         "catch_weather": null,
-        "str_desc": "You think you can hear this fish murmur some inarticulate Italian noises on occasion.",
-        "salinity": null
+        "str_desc": "You do NOT wanna let this fish near any scrapes or cuts."
     },
-
+    {
+        "id_fish": "largebonedlionfish",
+        "str_name": "Large-Boned Lionfish",
+        "rarity": "uncommon",
+        "catch_time": null,
+        "catch_weather": null,
+        "str_desc": "This fish evolved to have less meat on its bones to dissuade fishers. Didn't work, I guess."
+    },
+    {
+        "id_fish": "jellyturkeyfish",
+        "str_name": "Jelly Turkey Fish",
+        "rarity": "uncommon",
+        "catch_time": null,
+        "catch_weather": null,
+        "str_desc": "You think you prick your index finger on one of its spines, but on closer examination it's just strawberry jam...?"
+    },
+    {
+        "id_fish": "jarocephalopod",
+        "str_name": "Jar O' Cephalopod",
+        "rarity": "uncommon",
+        "catch_time": null,
+        "catch_weather": null,
+        "str_desc": "He looks content in there."
+    },
+    {
+        "id_fish": "arcticbluelip",
+        "str_name": "Arctic Blue Lip",
+        "rarity": "uncommon",
+        "catch_time": null,
+        "catch_weather": "spiky",
+        "str_desc": "This fish will give you frostbite if you hold it for more than a few seconds in your bare hands. Better toss it back quick."
+    },
+    {
+        "id_fish": "cardboardcrab",
+        "str_name": "Cardboard Crab",
+        "rarity": "uncommon",
+        "catch_time": null,
+        "catch_weather": null,
+        "str_desc": "Rumor has it these were a scrapped model of Nintendo Labo that escaped into the wilderness. Still would be tastier than any of the food in the cave."
+    },
+    {
+        "id_fish": "seajuggalo",
+        "str_name": "Sea Juggalo",
+        "rarity": "uncommon",
+        "catch_time": null,
+        "catch_weather": "sultry",
+        "str_desc": "It's colored hot pink and baby blue, just like cotton candy Faygo."
+    },
+    {
+        "id_fish": "bigtopoctopus",
+        "str_name": "Big Top Octopus",
+        "rarity": "uncommon",
+        "catch_time": null,
+        "catch_weather": null,
+        "str_desc": "This festive cephalopod dredges up pleasant memories of circuses long past."
+    },
+    {
+        "id_fish": "wadofeels",
+        "str_name": "Wad of Eels",
+        "rarity": "uncommon",
+        "catch_time": null,
+        "catch_weather": "nonplussed",
+        "str_desc": "You consider trying to untangle them, but they seems to be pretty happy like this."
+    },
+    {
+        "id_fish": "flatshark",
+        "str_name": "Flat Shark",
+        "rarity": "uncommon",
+        "catch_time": null,
+        "catch_weather": null,
+        "str_desc": "You take care not to injure the poor thing, cuz it's REALLY flat."
+    },
+    {
+        "id_fish": "bruiserbarracuda",
+        "str_name": "Bruiser Barracuda",
+        "rarity": "uncommon",
+        "catch_time": null,
+        "catch_weather": null,
+        "str_desc": "ba ba ra ra cu cu da da"
+    },
+    {
+        "id_fish": "fishintentionallyleftblank",
+        "str_name": "Fish Intentionally Left Blank",
+        "rarity": "uncommon",
+        "catch_time": null,
+        "catch_weather": "smudged",
+        "str_desc": "Huh? There's a fish here? Where is it? Well, I suppose the points don't lie."
+    },
+    {
+        "id_fish": "cowgirlfish",
+        "str_name": "Cowgirl Fish",
+        "rarity": "uncommon",
+        "catch_time": null,
+        "catch_weather": null,
+        "str_desc": "Harder to find than a cowboy fish."
+    },
+    {
+        "id_fish": "chimeracarp",
+        "str_name": "Chimera Carp",
+        "rarity": "uncommon",
+        "catch_time": null,
+        "catch_weather": "rapturous",
+        "str_desc": "You try not to imagine the terrible accident that created this abomination."
+    },
+    {
+        "id_fish": "machinegar",
+        "str_name": "Machine Gar",
+        "rarity": "uncommon",
+        "catch_time": null,
+        "catch_weather": "spiky",
+        "str_desc": "At a glance it looks like a normal fish, but you swear you can hear it emit a mechanical whirring noise."
+    },
+    {
+        "id_fish": "hunkydorado",
+        "str_name": "Hunky Dorado",
+        "rarity": "uncommon",
+        "catch_time": null,
+        "catch_weather": null,
+        "str_desc": "Hunky dory, dude."
+    },
+    {
+        "id_fish": "pineappleupsidedownfish",
+        "str_name": "Pineapple Upside-Down Fish",
+        "rarity": "uncommon",
+        "catch_time": null,
+        "catch_weather": null,
+        "str_desc": "It's eyes are bright red like maraschino cherries. Freaky."
+    },
+    {
+        "id_fish": "nyrotetra",
+        "str_name": "Nyro Tetra",
+        "rarity": "uncommon",
+        "catch_time": null,
+        "catch_weather": null,
+        "str_desc": "Can you surry? Can you picnic?"
+    },
     {
         "id_fish": "piranhaha",
         "str_name": "Piranhaha",
-        "size": "",
+        "rarity": "rare",
+        "catch_time": null,
+        "catch_weather": "dripping",
+        "str_desc": "Even while out of the water, the fish continues to laugh. Creepy."
+    },
+    {
+        "id_fish": "galaxyfrog",
+        "str_name": "Galaxy Frog",
         "rarity": "rare",
         "catch_time": null,
         "catch_weather": null,
-        "str_desc": "Its toothy smile gives you the creeps. You don't want to know why it's laughing.",
-        "salinity": null
+        "str_desc": "In it's huge eyes, you swear you can make out every star in the Milky Way."
     },
-
+    {
+        "id_fish": "grandclam",
+        "str_name": "Grand Clam",
+        "rarity": "rare",
+        "catch_time": null,
+        "catch_weather": null,
+        "str_desc": "You read somewhere that these were first discovered by some mariners in the Seattle bay."
+    },
+    {
+        "id_fish": "doublestuffedflounder",
+        "str_name": "Double-Stuffed Flounder",
+        "rarity": "rare",
+        "catch_time": null,
+        "catch_weather": null,
+        "str_desc": "The name sounds yummy, but said stuffing is visciously poisonous. Oh well."
+    },
+    {
+        "id_fish": "portraitoftheartistasafishman",
+        "str_name": "Portrait of the Artist as a Fish Man",
+        "rarity": "rare",
+        "catch_time": null,
+        "catch_weather": "nonplussed",
+        "str_desc": "Joyce would be proud."
+    },
+    {
+        "id_fish": "billybass",
+        "str_name": "Billy Bass",
+        "rarity": "rare",
+        "catch_time": null,
+        "catch_weather": null,
+        "str_desc": "https://www.youtube.com/watch?v=dHchmWsrfUo"
+    },
+    {
+        "id_fish": "furtivesunfish",
+        "str_name": "Furtive Sunfish",
+        "rarity": "rare",
+        "catch_time": null,
+        "catch_weather": "rapturous",
+        "str_desc": "So easily forgotten..."
+    },
     {
         "id_fish": "bathyphysaheadshark",
         "str_name": "Bathyphysahead Shark",
-        "size": "",
         "rarity": "promo",
         "catch_time": null,
-        "catch_weather": "foggy",
-        "str_desc": "This one looks terrifying. I'm serious.",
-        "salinity": "saltwater"
+        "catch_weather": "rapturous",
+        "str_desc": "You attempt to hold the monstrosity without touching the mass of stringy tendrils protruding from its head, but fail. You start to feel eyes sprout on the inside of your skull."
+    },
+    {
+        "id_fish": "thebassedgod",
+        "str_name": "The Bassed God",
+        "rarity": "promo",
+        "catch_time": null,
+        "catch_weather": null,
+        "str_desc": "Thank You Bassed God. We Love You."
+    },
+    {
+        "id_fish": "tentacalino",
+        "str_name": "Tentacolino",
+        "rarity": "promo",
+        "catch_time": null,
+        "catch_weather": null,
+        "str_desc": "Everybody LOVES Tentacolino! He's so cute and he singlehandedly saved the Titanic from sinking!"
     }
 ]
