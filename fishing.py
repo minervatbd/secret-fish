@@ -7,7 +7,7 @@ import cfg
 
 from backend import User, DexEntry, Timeline
 
-FISH_DEBUG = True
+FISH_DEBUG = False
 
 """ class for storing info about a fishing action in progress """
 class Fisher:
@@ -158,8 +158,6 @@ async def reel(cmd):
 
 	# On successful reel.
 	else:
-		response = "You reel in a {}!".format(cfg.fish_map[fisher.current_fish].str_name)
-
 		user_data = User(member = author)
 
 		user_data.points += cfg.points_vals[fisher.current_size] * cfg.points_vals[fisher.current_rarity]
@@ -168,10 +166,16 @@ async def reel(cmd):
 
 		dex_data.catch_count += 1
 
+		new_text = ""
+
 		if dex_data.catch_count == 1:
 			user_data.dex_count += 1
-			response += " New type of fish!"
+			new_text = "It's a new type of fish!"
 		
+		fish = cfg.fish_map[fisher.current_fish]
+
+		response = "You reel in a {}! {}\n\n{}".format(fish.str_name, new_text, fish.str_desc)
+
 		user_data.persist()
 		dex_data.persist()
 

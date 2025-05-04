@@ -26,7 +26,7 @@ cmd_stats_2 = cmd_prefix + "points"
 cmd_stats_3 = cmd_prefix + "check"
 
 update_hookstillactive = 60 * 60 * 1
-update_timeline = 30
+update_timeline = 60 * 10
 
 max_id_len = 20
 
