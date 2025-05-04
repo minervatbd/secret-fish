@@ -58,4 +58,4 @@ async def weather(cmd):
     timeline = Timeline(id_server = cmd.message.guild.id)
     response = "Current weather: {}".format(timeline.weather)
 
-    return await utils.send_message(cmd.message_channel, author, response)
+    return await utils.send_message(cmd.message.channel, author, response)
