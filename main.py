@@ -28,6 +28,7 @@ cmd_map = {
     cfg.cmd_stats_1: cmd.status,
     cfg.cmd_stats_2: cmd.status,
     cfg.cmd_stats_3: cmd.status,
+    cfg.cmd_weather: cmd.weather,
 }
 
 class MyClient(discord.Client):

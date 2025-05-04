@@ -24,6 +24,7 @@ cmd_id_3 = cmd_prefix + "setgender"
 cmd_stats_1 = cmd_prefix + "status"
 cmd_stats_2 = cmd_prefix + "points"
 cmd_stats_3 = cmd_prefix + "check"
+cmd_weather = cmd_prefix + "weather"
 
 update_hookstillactive = 60 * 60 * 1
 update_timeline = 60 * 10

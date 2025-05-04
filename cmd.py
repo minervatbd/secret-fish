@@ -1,7 +1,7 @@
 import utils
 import cfg
 
-from backend import User
+from backend import User, Timeline
 
 """ simple test command """
 async def test(cmd):
@@ -51,3 +51,11 @@ async def status(cmd):
     response += dex_text + "have caught {} unique species of fish.".format(user_data.dex_count)
     
     return await utils.send_message(cmd.message.channel, author, response)
+
+""" check the weather """
+async def weather(cmd):
+    author = cmd.message.author
+    timeline = Timeline(id_server = cmd.message.guild.id)
+    response = "Current weather: {}".format(timeline.weather)
+
+    return await utils.send_message(cmd.message_channel, author, response)
