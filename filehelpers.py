@@ -34,7 +34,7 @@ def ParseBiteText(fname):
     try:
         f = open(fname)
         a = f.read()
-        outlist.extend(json.loads(a))
+        outlist.extend(json.loads(a, ))
     except FileNotFoundError:
         print(fname + " not found.")
 
