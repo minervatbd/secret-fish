@@ -41,11 +41,11 @@ async def status(cmd):
 
     else:
         member = cmd.mentions[0]
-        user_data = User(member = author)
+        user_data = User(member = member)
         
         if member != author:
             response = "{} is ".format(member.display_name)
-            dex_text = "They "
+            dex_text = " They "
     
     response += "a fisher{} with {} fishpoints.".format(user_data.identity, user_data.points)
     response += dex_text + "have caught {} unique species of fish.".format(user_data.dex_count)
