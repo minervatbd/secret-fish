@@ -98,8 +98,10 @@ async def cast(cmd):
 		fish_timer = cfg.fish_timer_default
 		reel_timer = cfg.reel_timer_default
 		
-		while not utils.TERMINATE and min_count > 0:
+		# FISH LOOP
+		while not utils.TERMINATE:
 			
+			#break the loop immediately while debugging
 			if FISH_DEBUG:
 				break
 
@@ -109,11 +111,15 @@ async def cast(cmd):
 			if current_fishing_id != fisher.fishing_id or not fisher.fishing:
 				fisher.stop()
 				return
-
-			await utils.send_message(channel, author, random.choice(cfg.no_bite_text))
-
+			
 			min_count -= 1
 
+			# break if minute count has run out
+			if min_count <= 0:
+				break
+
+			# otherwise send a no bite message
+			await utils.send_message(channel, author, random.choice(cfg.no_bite_text))
 		
 		# bite happens when loop breaks
 		fisher.bite = True
