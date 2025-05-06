@@ -8,6 +8,7 @@ import cfg
 from backend import User, DexEntry, Timeline
 
 FISH_DEBUG = False
+lines_cut = False
 
 """ class for storing info about a fishing action in progress """
 class Fisher:
@@ -74,6 +75,10 @@ async def cast(cmd):
 	elif fisher.fishing is True:
 		response = "You've already cast a line."
 	
+	# If the lines cut command has been triggered
+	elif lines_cut is True:
+		response = "Sorry, no more casting for now. Standby while the bot is being restarted."
+	
 	else:
 		fisher.fishing = True
 
@@ -124,7 +129,8 @@ async def cast(cmd):
 		# bite happens when loop breaks
 		fisher.bite = True
 
-		await utils.send_message(channel, author, bite_text)
+		# reel now message
+		await utils.send_message(channel, author, bite_text, mention = author)
 
 		await asyncio.sleep(reel_timer)
 
@@ -188,3 +194,13 @@ async def reel(cmd):
 		fisher.stop()
 
 	return await utils.send_message(channel, author, response)
+
+""" prevents new lines from being cast for bot testing purposes """
+async def cut_all_lines(cmd):
+	author = cmd.message.author
+	channel = cmd.message.channel
+
+	if author.get_role(cfg.role_admin) is not None:
+		global lines_cut
+		lines_cut = True
+		return await utils.send_message(channel, author, "No new lines can be cast now.")

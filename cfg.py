@@ -25,6 +25,7 @@ cmd_stats_1 = cmd_prefix + "status"
 cmd_stats_2 = cmd_prefix + "points"
 cmd_stats_3 = cmd_prefix + "check"
 cmd_weather = cmd_prefix + "weather"
+cmd_cutlines = cmd_prefix + "cut"
 
 update_hookstillactive = 60 * 60 * 1
 update_timeline = 60 * 10
@@ -116,6 +117,7 @@ weather_types = [
 weather_default = weather_types[0]
 
 role_fisher = 1368682228770672843
+role_admin = 1368953452906156103
 
 channel_lakefront = 1327418589627682856
 channel_shop = 1329604548314271875

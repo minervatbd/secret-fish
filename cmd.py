@@ -5,8 +5,8 @@ from backend import User, Timeline
 
 """ simple test command """
 async def test(cmd):
-	response = 'tested'
-	return await utils.send_message(cmd.message.channel, cmd.message.author, response) # type: ignore
+	response = 'test'.format(cmd.message.author.id)
+	return await utils.send_message(cmd.message.channel, cmd.message.author, response, mention = cmd.message.author) # type: ignore
 
 """ for give self gender :) """
 async def identify(cmd):

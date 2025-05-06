@@ -29,6 +29,7 @@ cmd_map = {
     cfg.cmd_stats_2: cmd.status,
     cfg.cmd_stats_3: cmd.status,
     cfg.cmd_weather: cmd.weather,
+    cfg.cmd_cutlines: fishing.cut_all_lines
 }
 
 class MyClient(discord.Client):
